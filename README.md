@@ -2,7 +2,7 @@
 Ansible Role: KeyDB Active Replication
 =========
 
-![CI](https://github.com/v0112358/ansible-role-keydb-active-replication/actions/workflows/main.yml/badge.svg) ![Ansible Role](https://img.shields.io/ansible/role/d/55902) [![GitHub license](https://img.shields.io/github/license/v0112358/ansible-role-keydb-active-replication)](https://github.com/v0112358/ansible-role-keydb-active-replication/blob/master/LICENSE.md)
+![CI](https://github.com/v0112358/ansible-role-keydb-active-replication/actions/workflows/main.yml/badge.svg) ![Ansible Role](https://img.shields.io/ansible/role/d/55920) [![GitHub license](https://img.shields.io/github/license/v0112358/ansible-role-keydb-active-replication)](https://github.com/v0112358/ansible-role-keydb-active-replication/blob/master/LICENSE.md)
 
 Install and configure KeyDB Active Replication on your system.
 
