@@ -1,0 +1,32 @@
+---
+######### KeyDB packages
+keydb_packages:
+  rpm: 
+    - https://download.keydb.dev/pkg/open_source/rpm/centos{{ ansible_distribution_major_version }}/x86_64/keydb-latest-1.el{{ ansible_distribution_major_version }}.x86_64.rpm
+  ppa:
+    apt_repository: https://download.keydb.dev/open-source-dist
+    apt_key: https://download.keydb.dev/open-source-dist/keyring.gpg
+
+######### KeyDB config
+keydb_active_replication_conf:
+  port: "6379"
+  maxmemory: "64mb"
+  rename_commands:
+    - FLUSHDB
+    - FLUSHALL
+    - KEYS
+    - SHUTDOWN
+
+######### redis_exporter
+redis_exporter_packages:
+  url: 'https://github.com/oliver006/redis_exporter/releases/download/v1.24.0/redis_exporter-v1.24.0.linux-amd64.tar.gz'
+  checksum: 'sha256:aae973791acec280942a518be396e4b09b1d6720d67b5ae31662db8913d1fd53'
+
+######### Systemd limit
+systemd_services:
+  mysqld:
+    LimitFSIZE: 'infinity'
+    LimitCPU: 'infinity'
+    LimitAS: 'infinity'
+    LimitNOFILE: 2000000
+    LimitNPROC: 2000000

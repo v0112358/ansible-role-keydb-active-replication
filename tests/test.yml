@@ -1,0 +1,11 @@
+---
+- name: Deploy KeyDB Active Replication
+  hosts: keydb_active_replication
+  pre_tasks:
+    - name: Verify Ansible meets KeyDB requirements.
+      assert:
+        that: "ansible_version.full is version_compare('2.10.0', '>=')"
+        msg: >
+          "You must update Ansible to at least 2.10.0 to use this playbook"
+  roles:
+    - { role: keydb-active-replication, tags: keydb-active-replication }

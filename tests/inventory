@@ -1,0 +1,12 @@
+[keydb_active_replication:children]
+keydb_active_replication_infra
+keydb_active_replication_shopping
+
+[keydb_active_replication_infra]
+vm-dev-keydb-infra-0
+vm-dev-keydb-infra-1
+
+[keydb_active_replication_shopping]
+vm-dev-keydb-shopping-0
+vm-dev-keydb-shopping-1
+vm-dev-keydb-shopping-2

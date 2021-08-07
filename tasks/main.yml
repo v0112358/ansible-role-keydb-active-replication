@@ -1,0 +1,12 @@
+---
+- include_tasks: keydb-active-replication-install-{{ ansible_os_family }}.yml
+  tags: [keydb-active-replication-install, install]
+
+- import_tasks: keydb-active-replication-operating-system-tweaks.yml
+  tags: [keydb-active-replication-operating-system-tweaks, operating-system-tweaks]
+
+- import_tasks: keydb-active-replication-configure.yml
+  tags: [keydb-active-replication-configure, configure]
+
+- import_tasks: keydb-active-replication-redis-exporter.yml
+  tags: [keydb-active-replication-redis-exporter, redis-exporter]

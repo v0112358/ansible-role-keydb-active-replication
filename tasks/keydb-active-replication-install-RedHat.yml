@@ -1,0 +1,34 @@
+---
+- name: keydb-active-replication-install | Check if KeyDB already installed
+  ansible.builtin.stat: path=/usr/bin/keydb-server
+  register: keydb_bin
+
+- name: keydb-active-replication-install | Install KeyDB
+  block:
+    - name: keydb-active-replication-install | Install KeyDB package
+      ansible.builtin.yum:
+        name: "{{ keydb_packages.rpm }}"
+        state: latest
+        disable_gpg_check: yes
+
+  when: keydb_bin.stat.exists == False
+
+- name: keydb-active-replication-install | Create a directory for the systemd service modification
+  ansible.builtin.file:
+    path: '/usr/lib/systemd/system/keydb.service.d'
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: keydb-active-replication-install | Update KeyDB systemd resource limit
+  ansible.builtin.template:
+    src: systemd/custom.conf.j2
+    dest: '/usr/lib/systemd/system/keydb.service.d/custom.conf'
+    owner: root
+    group: root
+    mode: 0644
+  with_dict: '{{ systemd_services }}'
+  notify: systemd reload
+  tags:
+    - update_mysqld_systemd_resource_limit

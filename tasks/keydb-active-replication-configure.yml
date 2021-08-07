@@ -1,0 +1,20 @@
+---
+- name: keydb-active-replication-create-configure | Get all ip address in group
+  ansible.builtin.set_fact:
+    keydb_ip_address_list: "{{ groups[hostvars[inventory_hostname].group_names[-1]] | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | list }}"
+
+- name: keydb-active-replication-configure | Apply config files /etc/keydb/keydb.conf
+  ansible.builtin.template:
+    src: etc/keydb/keydb.conf.j2
+    dest: /etc/keydb/keydb.conf
+    mode: 0644
+    owner: keydb
+    group: keydb
+  notify: Warning file /etc/keydb/keydb.conf has been changed
+
+- name: keydb-active-replication-configure | Ensures KeyDB is started and enabled
+  ansible.builtin.systemd:
+    name: keydb
+    daemon_reload: True
+    enabled: True
+    state: started
