@@ -21,15 +21,7 @@
         owner: root
         group: root
         extra_opts: ['--strip', '1']
-
-    - name: keydb-active-replication-redis-exporter | Remove junk files
-      ansible.builtin.file:
-        path: /usr/local/bin/{{ item }}
-        state: absent
-      with_items:
-        - LICENSE
-        - NOTICE
-        - README.md
+        exclude: ['LICENSE', 'NOTICE', 'README.md']
 
   when: redis_exporter_bin.stat.exists == False
 
