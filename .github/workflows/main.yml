@@ -29,6 +29,7 @@ jobs:
       matrix:
         image:
           - centos7
+          - centos8
     steps:
       - name: checkout
         uses: actions/checkout@v2
