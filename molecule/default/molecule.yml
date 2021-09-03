@@ -6,6 +6,8 @@ scenario:
     - verify
 dependency:
   name: galaxy
+  options:
+    role-file: requirements.yml
 driver:
   name: docker
 lint: |
